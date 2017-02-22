@@ -1,4 +1,3 @@
-
 var bio = {
 
     'name': 'Wataru Sekiguchi',
@@ -30,7 +29,8 @@ var education = {
         {
             'title': 'Front-end Web Developer',
             'school': 'Udacity',
-            'dates': 'December, 2016 - Present'
+            'dates': 'December, 2016 - Present',
+            'url': 'https://udacity.com'
         }
     ]
 };
@@ -41,10 +41,24 @@ var work = {
     'jobs': [
         {
             'employer': 'Hays',
-            'title': 'Technical Solutions Specialist',
+            'title': 'Google Analytics 360 Support Specialist - Onsite Consultant',
             'location': 'Tokyo',
             'dates': 'March 2016 to present',
-            'description': 'I support clients in Japan and South Korea.'
+            'description': 'Supported clients in Japan and South Korea.'
+        },
+        {
+            'employer': 'BRAVESOFT Inc.',
+            'title': 'iOS Developer',
+            'location': 'Tokyo',
+            'dates': 'December 2015 to March 2016',
+            'description': 'Created iOS app in Objective-C'
+        },
+        {
+            'employer': 'i3DESIGN Co., Ltd.',
+            'title': 'Web Engineer',
+            'location': 'Tokyo',
+            'dates': 'May 2015 to December 2015',
+            'description': 'Improved testing environment and conducted end-to-end testing for mobile sites.'
         }
     ]
 };
@@ -57,6 +71,18 @@ var projects = {
             'dates': 'November 2016 to present',
             'description': "Solved secret programming problems.",
             'images': ['images/foobar.png']
+        },
+        {
+            'title': 'Google Analytics iOS sample App',
+            'dates': 'October 2016 to present',
+            'description': "How to use Web View with GTM and GA SDK",
+            'images': []
+        },
+        {
+            'title': 'Learn Python the Hard Way',
+            'dates': 'October 2016 to February 2017',
+            'description': "Learned Python the hard way.",
+            'images': []
         }
     ]
 };
@@ -95,48 +121,84 @@ function displayWork() {
 
     $('#workExperience').append(HTMLworkStart);
 
-    var employer = replaceDummy(HTMLworkEmployer, '%data%', work['jobs'][0]['employer'])
-    var job_title = replaceDummy(HTMLworkTitle, '%data%', work['jobs'][0]['title'])
+    for (job in work['jobs']) {
 
-    $('.work-entry')
-        .append(employer + job_title)
-        .append(replaceDummy(HTMLworkDates, '%data%', work['jobs'][0]['dates']))
-        .append(replaceDummy(HTMLworkLocation, '%data%', work['jobs'][0]['location']))
-        .append(replaceDummy(HTMLworkDescription, '%data%', work['jobs'][0]['description']));
+        var employer = replaceDummy(HTMLworkEmployer, '%data%', work['jobs'][job]['employer'])
+        var job_title = replaceDummy(HTMLworkTitle, '%data%', work['jobs'][job]['title'])
 
+        $('.work-entry')
+            .append(employer + job_title)
+            .append(replaceDummy(HTMLworkDates, '%data%', work['jobs'][job]['dates']))
+            .append(replaceDummy(HTMLworkLocation, '%data%', work['jobs'][job]['location']))
+            .append(replaceDummy(HTMLworkDescription, '%data%', work['jobs'][job]['description']));
+
+    }
 };
 
 function displayProjects() {
 
     $('#projects').append(HTMLprojectStart);
 
-    $('.project-entry')
-        .append(replaceDummy(HTMLprojectTitle, '%data%', projects['projects'][0]['title']))
-        .append(replaceDummy(HTMLprojectDates, '%data%', projects['projects'][0]['dates']))
-        .append(replaceDummy(HTMLprojectDescription, '%data%', projects['projects'][0]['description']))
-        .append(replaceDummy(HTMLprojectImage, '%data%', projects['projects'][0]['images'][0]));
+    for (project in projects['projects']) {
 
+        $('.project-entry')
+            .append(replaceDummy(HTMLprojectTitle, '%data%', projects['projects'][project]['title']))
+            .append(replaceDummy(HTMLprojectDates, '%data%', projects['projects'][project]['dates']))
+            .append(replaceDummy(HTMLprojectDescription, '%data%', projects['projects'][project]['description']));
+
+        image = projects['projects'][project]['images'];
+
+        if (image.length > 0) {
+
+            $('.project-entry').append(replaceDummy(HTMLprojectImage, '%data%', image));
+        }
+
+    }
 };
 
 function displayEducation() {
 
+    // Offline
     $('#education').append(HTMLschoolStart);
+ 
+    for (school in education['schools']){
 
-    var school_name = replaceDummy(HTMLschoolName, '%data%', education['schools'][0]['name']);
-    var degree = replaceDummy(HTMLschoolDegree, '%data%', education['schools'][0]['degree'])
+        var school_name = replaceDummy(HTMLschoolName, '%data%', education['schools'][school]['name']);
+        var degree = replaceDummy(HTMLschoolDegree, '%data%', education['schools'][school]['degree'])
 
-    $('.education-entry')
-        .append(school_name + degree)
-        .append(replaceDummy(HTMLschoolDates, '%data%', education['schools'][0]['dates']))
-        .append(replaceDummy(HTMLschoolLocation, '%data%', education['schools'][0]['location']))
-        .append(replaceDummy(HTMLschoolMajor, '%data%', education['schools'][0]['majors']));
+        $('.education-entry:last')
+            .append(school_name + degree)
+            .append(replaceDummy(HTMLschoolDates, '%data%', education['schools'][school]['dates']))
+            .append(replaceDummy(HTMLschoolLocation, '%data%', education['schools'][school]['location']))
+            .append(replaceDummy(HTMLschoolMajor, '%data%', education['schools'][school]['majors']));
 
-    $('#education').append(HTMLonlineClasses)
+    }
 
-    var online_title = replaceDummy(HTMLonlineTitle, '%data%', education['onlineCourses'][0]['onlineCourses']);
-    var online_school = replaceDummy(HTMLonlineSchool, '%data%', education['onlineCourses'][0]['school']);
+    // Online
+    $('#education')
+        .append(HTMLonlineClasses)
+        .append(HTMLschoolStart);
+
+    for (cource in education['onlineCourses']) {
+
+        var title = replaceDummy(HTMLonlineTitle, '%data%', education['onlineCourses'][cource]['title']);
+        var school = replaceDummy(HTMLonlineSchool, '%data%', education['onlineCourses'][cource]['school']);
+
+        $('.education-entry:last')
+            .append(title + school)
+            .append(replaceDummy(HTMLonlineDates, '%data%', education['onlineCourses'][cource]['dates']))
+            .append(replaceDummy(HTMLonlineURL, '%data%', education['onlineCourses'][cource]['url']));
+
+    }
 
 };
+
+function displayMap() {
+
+    $('#mapDiv').append(googleMap);
+    $('#map').append(internationalizeButton);
+
+}
 
 function displayFooter() {
 
@@ -148,13 +210,9 @@ function displayFooter() {
 };
 
 
-
-
 displayHeader();
 displayWork();
 displayProjects();
 displayEducation();
+displayMap();
 displayFooter();
-
-
-
