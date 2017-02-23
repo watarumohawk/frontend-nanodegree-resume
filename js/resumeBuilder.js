@@ -91,7 +91,7 @@ function replaceDummy(tag, string, data) {
 
     return tag.replace(string, data)
 
-};
+}
 
 function displayHeader() {
 
@@ -114,7 +114,7 @@ function displayHeader() {
         $("#skills").append(replaceDummy(HTMLskills, '%data%', bio['skills'][i]));
     }
 
-};
+}
 
 
 function displayWork() {
@@ -133,7 +133,7 @@ function displayWork() {
             .append(replaceDummy(HTMLworkDescription, '%data%', work['jobs'][job]['description']));
 
     }
-};
+}
 
 function displayProjects() {
 
@@ -154,7 +154,7 @@ function displayProjects() {
         }
 
     }
-};
+}
 
 function displayEducation() {
 
@@ -191,7 +191,7 @@ function displayEducation() {
 
     }
 
-};
+}
 
 function displayMap() {
 
@@ -207,7 +207,7 @@ function displayFooter() {
         $('#footerContacts').append(replaceDummy(contact_tag, '%data%', bio.contacts[contact]));
     }
 
-};
+}
 
 
 displayHeader();
