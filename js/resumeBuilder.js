@@ -35,7 +35,6 @@ var education = {
     ]
 };
 
-
 var work = {
 
     'jobs': [
@@ -87,31 +86,33 @@ var projects = {
     ]
 };
 
+
 function replaceDummy(tag, string, data) {
 
     return tag.replace(string, data)
 
 }
 
+
 function displayHeader() {
 
     $('#header')
-        .prepend(replaceDummy(HTMLheaderRole, '%data%', bio['role']))
-        .prepend(replaceDummy(HTMLheaderName, '%data%', bio['name']));
+        .prepend(replaceDummy(HTMLheaderRole, '%data%', bio.role))
+        .prepend(replaceDummy(HTMLheaderName, '%data%', bio.name));
 
-    for (var contact in bio['contacts']) {
+    for (var contact in bio.contacts) {
         var contact_tag = replaceDummy(HTMLcontactGeneric, '%contact%', contact)
         $("#topContacts").append(replaceDummy(contact_tag, '%data%', bio.contacts[contact]));
     }
 
     $('#header')
-        .append(replaceDummy(HTMLbioPic, '%data%', bio['biopic']))
-        .append(replaceDummy(HTMLwelcomeMsg, '%data%', bio['welcomeMessage']))
-        .append(replaceDummy(HTMLskillsStart, '%data%', bio['skills']));
+        .append(replaceDummy(HTMLbioPic, '%data%', bio.biopic))
+        .append(replaceDummy(HTMLwelcomeMsg, '%data%', bio.welcomeMessage))
+        .append(replaceDummy(HTMLskillsStart, '%data%', bio.skills));
 
 
-    for (var i = 0; i < bio['skills'].length; i++) {
-        $("#skills").append(replaceDummy(HTMLskills, '%data%', bio['skills'][i]));
+    for (var i = 0; i < bio.skills.length; i++) {
+        $("#skills").append(replaceDummy(HTMLskills, '%data%', bio.skills[i]));
     }
 
 }
@@ -121,32 +122,33 @@ function displayWork() {
 
     $('#workExperience').append(HTMLworkStart);
 
-    for (job in work['jobs']) {
+    for (var i in work.jobs) {
 
-        var employer = replaceDummy(HTMLworkEmployer, '%data%', work['jobs'][job]['employer'])
-        var job_title = replaceDummy(HTMLworkTitle, '%data%', work['jobs'][job]['title'])
+        var employer = replaceDummy(HTMLworkEmployer, '%data%', work.jobs[i].employer);
+        var job_title = replaceDummy(HTMLworkTitle, '%data%', work.jobs[i].title);
 
         $('.work-entry')
             .append(employer + job_title)
-            .append(replaceDummy(HTMLworkDates, '%data%', work['jobs'][job]['dates']))
-            .append(replaceDummy(HTMLworkLocation, '%data%', work['jobs'][job]['location']))
-            .append(replaceDummy(HTMLworkDescription, '%data%', work['jobs'][job]['description']));
+            .append(replaceDummy(HTMLworkDates, '%data%', work.jobs[i].dates))
+            .append(replaceDummy(HTMLworkLocation, '%data%', work.jobs[i].location))
+            .append(replaceDummy(HTMLworkDescription, '%data%', work.jobs[i].description));
 
     }
 }
+
 
 function displayProjects() {
 
     $('#projects').append(HTMLprojectStart);
 
-    for (project in projects['projects']) {
+    for (var j in projects.projects) {
 
         $('.project-entry')
-            .append(replaceDummy(HTMLprojectTitle, '%data%', projects['projects'][project]['title']))
-            .append(replaceDummy(HTMLprojectDates, '%data%', projects['projects'][project]['dates']))
-            .append(replaceDummy(HTMLprojectDescription, '%data%', projects['projects'][project]['description']));
+            .append(replaceDummy(HTMLprojectTitle, '%data%', projects.projects[j].title))
+            .append(replaceDummy(HTMLprojectDates, '%data%', projects.projects[j].dates))
+            .append(replaceDummy(HTMLprojectDescription, '%data%', projects.projects[j].description));
 
-        image = projects['projects'][project]['images'];
+        image = projects.projects[j].images;
 
         if (image.length > 0) {
 
@@ -156,21 +158,22 @@ function displayProjects() {
     }
 }
 
+
 function displayEducation() {
 
     // Offline
     $('#education').append(HTMLschoolStart);
  
-    for (school in education['schools']){
+    for (var i in education.schools){
 
-        var school_name = replaceDummy(HTMLschoolName, '%data%', education['schools'][school]['name']);
-        var degree = replaceDummy(HTMLschoolDegree, '%data%', education['schools'][school]['degree'])
+        var school_name = replaceDummy(HTMLschoolName, '%data%', education.schools[i].name);
+        var degree = replaceDummy(HTMLschoolDegree, '%data%', education.schools[i].degree)
 
         $('.education-entry:last')
             .append(school_name + degree)
-            .append(replaceDummy(HTMLschoolDates, '%data%', education['schools'][school]['dates']))
-            .append(replaceDummy(HTMLschoolLocation, '%data%', education['schools'][school]['location']))
-            .append(replaceDummy(HTMLschoolMajor, '%data%', education['schools'][school]['majors']));
+            .append(replaceDummy(HTMLschoolDates, '%data%', education.schools[i].dates))
+            .append(replaceDummy(HTMLschoolLocation, '%data%', education.schools[i].location))
+            .append(replaceDummy(HTMLschoolMajor, '%data%', education.schools[i].majors));
 
     }
 
@@ -179,19 +182,20 @@ function displayEducation() {
         .append(HTMLonlineClasses)
         .append(HTMLschoolStart);
 
-    for (cource in education['onlineCourses']) {
+    for (var j in education.onlineCourses) {
 
-        var title = replaceDummy(HTMLonlineTitle, '%data%', education['onlineCourses'][cource]['title']);
-        var school = replaceDummy(HTMLonlineSchool, '%data%', education['onlineCourses'][cource]['school']);
+        var title = replaceDummy(HTMLonlineTitle, '%data%', education.onlineCourses[j].title);
+        var school = replaceDummy(HTMLonlineSchool, '%data%', education.onlineCourses[j].school);
 
         $('.education-entry:last')
             .append(title + school)
-            .append(replaceDummy(HTMLonlineDates, '%data%', education['onlineCourses'][cource]['dates']))
-            .append(replaceDummy(HTMLonlineURL, '%data%', education['onlineCourses'][cource]['url']));
+            .append(replaceDummy(HTMLonlineDates, '%data%', education.onlineCourses[j].dates))
+            .append(replaceDummy(HTMLonlineURL, '%data%', education.onlineCourses[j].url));
 
     }
 
 }
+
 
 function displayMap() {
 
@@ -200,9 +204,10 @@ function displayMap() {
 
 }
 
+
 function displayFooter() {
 
-    for (var contact in bio['contacts']) {
+    for (var contact in bio.contacts) {
         var contact_tag = replaceDummy(HTMLcontactGeneric, '%contact%', contact)
         $('#footerContacts').append(replaceDummy(contact_tag, '%data%', bio.contacts[contact]));
     }
