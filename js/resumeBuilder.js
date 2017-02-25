@@ -16,74 +16,62 @@ var bio = {
 
 var education = {
 
-    'schools': [
-        {
-            'name': 'Nihon University',
-            'location': 'Tokyo',
-            'degree': 'Bachelor of Science',
-            'majors': ['Physics'],
-            'dates': '2012 - 2016'
-        }
-    ],
-    'onlineCourses': [
-        {
-            'title': 'Front-end Web Developer',
-            'school': 'Udacity',
-            'dates': 'December, 2016 - Present',
-            'url': 'https://udacity.com'
-        }
-    ]
+    'schools': [{
+        'name': 'Nihon University',
+        'location': 'Tokyo',
+        'degree': 'Bachelor of Science',
+        'majors': ['Physics'],
+        'dates': '2012 - 2016'
+    }],
+    'onlineCourses': [{
+        'title': 'Front-end Web Developer',
+        'school': 'Udacity',
+        'dates': 'December, 2016 - Present',
+        'url': 'https://udacity.com'
+    }]
 };
 
 var work = {
 
-    'jobs': [
-        {
-            'employer': 'Hays',
-            'title': 'Google Analytics 360 Support Specialist - Onsite Consultant',
-            'location': 'Tokyo',
-            'dates': 'March 2016 to present',
-            'description': 'Supported clients in Japan and South Korea.'
-        },
-        {
-            'employer': 'BRAVESOFT Inc.',
-            'title': 'iOS Developer',
-            'location': 'Tokyo',
-            'dates': 'December 2015 to March 2016',
-            'description': 'Created iOS app in Objective-C'
-        },
-        {
-            'employer': 'i3DESIGN Co., Ltd.',
-            'title': 'Web Engineer',
-            'location': 'Tokyo',
-            'dates': 'May 2015 to December 2015',
-            'description': 'Improved testing environment and conducted end-to-end testing for mobile sites.'
-        }
-    ]
+    'jobs': [{
+        'employer': 'Hays',
+        'title': 'Google Analytics 360 Support Specialist - Onsite Consultant',
+        'location': 'Tokyo',
+        'dates': 'March 2016 to present',
+        'description': 'Supported clients in Japan and South Korea.'
+    }, {
+        'employer': 'BRAVESOFT Inc.',
+        'title': 'iOS Developer',
+        'location': 'Tokyo',
+        'dates': 'December 2015 to March 2016',
+        'description': 'Created iOS app in Objective-C'
+    }, {
+        'employer': 'i3DESIGN Co., Ltd.',
+        'title': 'Web Engineer',
+        'location': 'Tokyo',
+        'dates': 'May 2015 to December 2015',
+        'description': 'Improved testing environment and conducted end-to-end testing for mobile sites.'
+    }]
 };
 
 var projects = {
 
-    'projects': [
-        {
-            'title': 'foobar',
-            'dates': 'November 2016 to present',
-            'description': "Solved secret programming problems.",
-            'images': ['images/foobar.png']
-        },
-        {
-            'title': 'Google Analytics iOS sample App',
-            'dates': 'October 2016 to present',
-            'description': "How to use Web View with GTM and GA SDK",
-            'images': []
-        },
-        {
-            'title': 'Learn Python the Hard Way',
-            'dates': 'October 2016 to February 2017',
-            'description': "Learned Python the hard way.",
-            'images': []
-        }
-    ]
+    'projects': [{
+        'title': 'foobar',
+        'dates': 'November 2016 to present',
+        'description': "Solved secret programming problems.",
+        'images': ['images/foobar.png']
+    }, {
+        'title': 'Google Analytics iOS sample App',
+        'dates': 'October 2016 to present',
+        'description': "How to use Web View with GTM and GA SDK",
+        'images': []
+    }, {
+        'title': 'Learn Python the Hard Way',
+        'dates': 'October 2016 to February 2017',
+        'description': "Learned Python the hard way.",
+        'images': []
+    }]
 };
 
 
@@ -162,9 +150,8 @@ function displayProjects() {
 function displayEducation() {
 
     // Offline
-    $('#education').append(HTMLschoolStart);
- 
-    for (var i in education.schools){
+    $('#education').append(HTMLschoolStart); 
+    for (var i in education.schools) {
 
         var school_name = replaceDummy(HTMLschoolName, '%data%', education.schools[i].name);
         var degree = replaceDummy(HTMLschoolDegree, '%data%', education.schools[i].degree)
