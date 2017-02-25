@@ -115,7 +115,7 @@ function displayWork() {
 
     $('#workExperience').append(HTMLworkStart);
 
-    for (var i; i < work.jobs.length; i++) {
+    for (var i = 0; i < work.jobs.length; i++) {
 
         var employer = replaceDummy(HTMLworkEmployer, '%data%', work.jobs[i].employer);
         var job_title = replaceDummy(HTMLworkTitle, '%data%', work.jobs[i].title);
@@ -134,7 +134,7 @@ function displayProjects() {
 
     $('#projects').append(HTMLprojectStart);
 
-    for (var j; j < projects.projects.length; j++) {
+    for (var j = 0; j < projects.projects.length; j++) {
 
         $('.project-entry')
             .append(replaceDummy(HTMLprojectTitle, '%data%', projects.projects[j].title))
@@ -157,7 +157,7 @@ function displayEducation() {
     // Offline
     $('#education').append(HTMLschoolStart);
  
-    for (var i; i < education.schools.length; i++){
+    for (var i = 0; i < education.schools.length; i++){
 
         var school_name = replaceDummy(HTMLschoolName, '%data%', education.schools[i].name);
         var degree = replaceDummy(HTMLschoolDegree, '%data%', education.schools[i].degree);
@@ -175,7 +175,7 @@ function displayEducation() {
         .append(HTMLonlineClasses)
         .append(HTMLschoolStart);
 
-    for (var j; j < education.onlineCourses.length; j++) {
+    for (var j = 0; j < education.onlineCourses.length; j++) {
 
         var title = replaceDummy(HTMLonlineTitle, '%data%', education.onlineCourses[j].title);
         var school = replaceDummy(HTMLonlineSchool, '%data%', education.onlineCourses[j].school);
