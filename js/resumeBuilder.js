@@ -77,10 +77,16 @@ var projects = {
 
 function replaceDummy(tag, string, data) {
 
-    return tag.replace(string, data)
+    return tag.replace(string, data);
 
 }
 
+function appendContact(id, contact) {
+
+    var tag = replaceDummy(HTMLcontactGeneric, '%contact%', contact);
+    $(id).append(replaceDummy(tag, '%data%', bio.contacts[contact]));
+
+}
 
 function displayHeader() {
 
@@ -88,16 +94,15 @@ function displayHeader() {
         .prepend(replaceDummy(HTMLheaderRole, '%data%', bio.role))
         .prepend(replaceDummy(HTMLheaderName, '%data%', bio.name));
 
-    for (var contact in bio.contacts) {
-        var contact_tag = replaceDummy(HTMLcontactGeneric, '%contact%', contact)
-        $("#topContacts").append(replaceDummy(contact_tag, '%data%', bio.contacts[contact]));
-    }
+    appendContact('#topContacts', 'mobile');
+    appendContact('#topContacts', 'email');
+    appendContact('#topContacts', 'github');
+    appendContact('#topContacts', 'twitter');
 
     $('#header')
         .append(replaceDummy(HTMLbioPic, '%data%', bio.biopic))
         .append(replaceDummy(HTMLwelcomeMsg, '%data%', bio.welcomeMessage))
         .append(replaceDummy(HTMLskillsStart, '%data%', bio.skills));
-
 
     for (var i = 0; i < bio.skills.length; i++) {
         $("#skills").append(replaceDummy(HTMLskills, '%data%', bio.skills[i]));
@@ -110,7 +115,7 @@ function displayWork() {
 
     $('#workExperience').append(HTMLworkStart);
 
-    for (var i in work.jobs) {
+    for (var i; i < work.jobs.length; i++) {
 
         var employer = replaceDummy(HTMLworkEmployer, '%data%', work.jobs[i].employer);
         var job_title = replaceDummy(HTMLworkTitle, '%data%', work.jobs[i].title);
@@ -129,7 +134,7 @@ function displayProjects() {
 
     $('#projects').append(HTMLprojectStart);
 
-    for (var j in projects.projects) {
+    for (var j; j < projects.projects.length; j++) {
 
         $('.project-entry')
             .append(replaceDummy(HTMLprojectTitle, '%data%', projects.projects[j].title))
@@ -150,11 +155,12 @@ function displayProjects() {
 function displayEducation() {
 
     // Offline
-    $('#education').append(HTMLschoolStart); 
-    for (var i in education.schools) {
+    $('#education').append(HTMLschoolStart);
+ 
+    for (var i; i < education.schools.length; i++){
 
         var school_name = replaceDummy(HTMLschoolName, '%data%', education.schools[i].name);
-        var degree = replaceDummy(HTMLschoolDegree, '%data%', education.schools[i].degree)
+        var degree = replaceDummy(HTMLschoolDegree, '%data%', education.schools[i].degree);
 
         $('.education-entry:last')
             .append(school_name + degree)
@@ -169,7 +175,7 @@ function displayEducation() {
         .append(HTMLonlineClasses)
         .append(HTMLschoolStart);
 
-    for (var j in education.onlineCourses) {
+    for (var j; j < education.onlineCourses.length; j++) {
 
         var title = replaceDummy(HTMLonlineTitle, '%data%', education.onlineCourses[j].title);
         var school = replaceDummy(HTMLonlineSchool, '%data%', education.onlineCourses[j].school);
@@ -194,10 +200,10 @@ function displayMap() {
 
 function displayFooter() {
 
-    for (var contact in bio.contacts) {
-        var contact_tag = replaceDummy(HTMLcontactGeneric, '%contact%', contact)
-        $('#footerContacts').append(replaceDummy(contact_tag, '%data%', bio.contacts[contact]));
-    }
+    appendContact('#footerContacts', 'mobile');
+    appendContact('#footerContacts', 'email');
+    appendContact('#footerContacts', 'github');
+    appendContact('#footerContacts', 'twitter');
 
 }
 
