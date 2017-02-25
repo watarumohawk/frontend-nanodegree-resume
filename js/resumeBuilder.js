@@ -7,6 +7,7 @@ var bio = {
         'email': 'wataru.sekiguchi416@gmail.com',
         'github': 'watarumohawk',
         'twitter': '@watarumohawk',
+        'location': 'Tokyo'
     },
     'location': 'Tokyo',
     'welcomeMessage': "Hi, I'm Wataru.",
@@ -21,7 +22,8 @@ var education = {
         'location': 'Tokyo',
         'degree': 'Bachelor of Science',
         'majors': ['Physics'],
-        'dates': '2012 - 2016'
+        'dates': '2012 - 2016',
+        'url': ''
     }],
     'onlineCourses': [{
         'title': 'Front-end Web Developer',
