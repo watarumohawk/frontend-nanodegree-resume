@@ -23,7 +23,7 @@ var education = {
         'degree': 'Bachelor of Science',
         'majors': ['Physics'],
         'dates': '2012 - 2016',
-        'url': ''
+        'url': 'http://www.nihon-u.ac.jp/intldiv/en/'
     }],
     'onlineCourses': [{
         'title': 'Front-end Web Developer',
@@ -67,12 +67,12 @@ var projects = {
         'title': 'Google Analytics iOS sample App',
         'dates': 'October 2016 to present',
         'description': "How to use Web View with GTM and GA SDK",
-        'images': []
+        'images': ['http://lorempixel.com/400/200/business/']
     }, {
         'title': 'Learn Python the Hard Way',
         'dates': 'October 2016 to February 2017',
         'description': "Learned Python the hard way.",
-        'images': []
+        'images': ['http://lorempixel.com/400/200/technics/']
     }]
 };
 
@@ -83,6 +83,7 @@ function replaceDummy(tag, string, data) {
 
 }
 
+
 function appendContact(id, contact) {
 
     var tag = replaceDummy(HTMLcontactGeneric, '%contact%', contact);
@@ -90,12 +91,13 @@ function appendContact(id, contact) {
 
 }
 
-function displayHeader() {
+bio.display = function(){
 
     $('#header')
         .prepend(replaceDummy(HTMLheaderRole, '%data%', bio.role))
         .prepend(replaceDummy(HTMLheaderName, '%data%', bio.name));
 
+    // Contacts in header
     appendContact('#topContacts', 'mobile');
     appendContact('#topContacts', 'email');
     appendContact('#topContacts', 'github');
@@ -110,10 +112,16 @@ function displayHeader() {
         $("#skills").append(replaceDummy(HTMLskills, '%data%', bio.skills[i]));
     }
 
+    // Contacts in footer
+    appendContact('#footerContacts', 'mobile');
+    appendContact('#footerContacts', 'email');
+    appendContact('#footerContacts', 'github');
+    appendContact('#footerContacts', 'twitter');
+
 }
 
 
-function displayWork() {
+work.display = function() {
 
     $('#workExperience').append(HTMLworkStart);
 
@@ -132,7 +140,7 @@ function displayWork() {
 }
 
 
-function displayProjects() {
+projects.display = function() {
 
     $('#projects').append(HTMLprojectStart);
 
@@ -143,18 +151,17 @@ function displayProjects() {
             .append(replaceDummy(HTMLprojectDates, '%data%', projects.projects[j].dates))
             .append(replaceDummy(HTMLprojectDescription, '%data%', projects.projects[j].description));
 
-        image = projects.projects[j].images;
+        img_path = projects.projects[j].images;
 
-        if (image.length > 0) {
-
-            $('.project-entry').append(replaceDummy(HTMLprojectImage, '%data%', image));
+        for (var i = 0; i < img_path.length; i++) {
+            $('.project-entry').append(replaceDummy(HTMLprojectImage, '%data%', img_path));
         }
 
     }
 }
 
 
-function displayEducation() {
+education.display = function() {
 
     // Offline
     $('#education').append(HTMLschoolStart);
@@ -200,19 +207,8 @@ function displayMap() {
 }
 
 
-function displayFooter() {
-
-    appendContact('#footerContacts', 'mobile');
-    appendContact('#footerContacts', 'email');
-    appendContact('#footerContacts', 'github');
-    appendContact('#footerContacts', 'twitter');
-
-}
-
-
-displayHeader();
-displayWork();
-displayProjects();
-displayEducation();
+bio.display();
+work.display();
+projects.display();
+education.display();
 displayMap();
-displayFooter();
